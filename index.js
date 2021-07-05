@@ -4,6 +4,7 @@ const path = require("path");
 const userRouter = require("./routes/user");
 const session = require("express-session");
 const passport = require("passport");
+// const Filestore = require("session-file-store")(session);
 require("./config/passport")(passport);
 
 const app = express();
@@ -31,9 +32,11 @@ mongoose.connect(
 //session
 app.use(
   session({
+    name: "session-id",
     secret: "secret",
-    resave: true,
+    resave: false,
     saveUninitialized: true,
+    // store: new Filestore(),
   })
 );
 

@@ -61,7 +61,7 @@ userRouter
     passport.authenticate("local", {
       successRedirect: "/dashboard",
       failureRedirect: "/users/login",
-      failureFlash: true,
+      // failureFlash: true,
     })(req, res, next);
     // const useremail = await users.findOne({ email: req.body.email });
     // if (!useremail) return res.status(400).send("email is incorrect");
@@ -78,6 +78,7 @@ userRouter
 
 userRouter.route("/dashboard").get(checkinguser, (req, res) => {
   res.sendFile("/public/dashboard.html", { root: process.cwd() });
+  console.log(req.sessionID);
 });
 
 userRouter.get("/logout", (req, res) => {
