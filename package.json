@@ -9,7 +9,10 @@
   "author": "vamsi",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bootstrap": "^5.0.2",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "mongoose": "^5.13.0",
     "nodemon": "^2.0.9"
   }
