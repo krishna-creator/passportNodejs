@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const path = require("path");
 const userRouter = require("./routes/user");
 const session = require("express-session");
+const passport = require("passport");
+require("./config/passport")(passport);
 
 const app = express();
 
@@ -26,9 +28,6 @@ mongoose.connect(
   }
 );
 
-//routes
-app.use("/", userRouter);
-
 //session
 app.use(
   session({
@@ -38,6 +37,12 @@ app.use(
   })
 );
 
+//passprot middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//routes
+app.use("/", userRouter);
 //port
 app.listen(3000, () => {
   console.log("connected to server");
