@@ -4,7 +4,7 @@ const path = require("path");
 const userRouter = require("./routes/user");
 const session = require("express-session");
 const passport = require("passport");
-// const Filestore = require("session-file-store")(session);
+const Filestore = require("session-file-store")(session);
 require("./config/passport")(passport);
 
 const app = express();
@@ -36,7 +36,10 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: true,
-    // store: new Filestore(),
+    store: new Filestore(),
+    cookie: {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    },
   })
 );
 
